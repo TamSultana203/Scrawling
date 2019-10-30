@@ -4,51 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
 
-    <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="715dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    android:paddingBottom="20dp"
+    android:background="@color/colorPofile"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+
+    tools:context=".SignInActivity">
 
 
-        <TextView
-            android:id="@+id/textureViewUserEmail"
-            android:textAppearance="?attr/textAppearanceLargePopupMenu"
-            android:text="Large Text"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextFullName"
-            android:hint="Enter your full name"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextAddress"
-            android:hint="Enter your address"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonAddPeope"
-            android:layout_gravity="center_horizontal"
-            android:text="Save Information"
-            />
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profilePicId"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/profile"
+                />
+
+            <TextView
+                android:id="@+id/profileFullNameId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profile Name"
+                android:layout_below="@+id/profilePicId"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/userNameId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:layout_below="@+id/profileFullNameId"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:id="@+id/profileStatusId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I am using Scrawler!!"
+                android:layout_below="@+id/userNameId"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light"
+                android:textSize="22sp"
+                />
 
 
-        <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Logout" />
-    </LinearLayout>
+        </RelativeLayout>
+
+
+
+
+
+
+        </ScrollView>
+
+
 </RelativeLayout>

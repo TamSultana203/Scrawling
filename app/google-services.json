@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "832215378208",
-    "firebase_url": "https://testify-49faf.firebaseio.com",
-    "project_id": "testify-49faf",
-    "storage_bucket": "testify-49faf.appspot.com"
+    "project_number": "167469597777",
+    "firebase_url": "https://godknows-9a859.firebaseio.com",
+    "project_id": "godknows-9a859",
+    "storage_bucket": "godknows-9a859.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:832215378208:android:ee6196055bdab07111cf45",
+        "mobilesdk_app_id": "1:167469597777:android:69693a6292cc8542e46470",
         "android_client_info": {
           "package_name": "com.example.testthis"
         }
       },
       "oauth_client": [
         {
-          "client_id": "832215378208-6mkbu8mc3t623bjjbq8vu72mepo2n0df.apps.googleusercontent.com",
+          "client_id": "167469597777-cc5lcdk1aa15in6j5snaqg475sd6rf8m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHCp-8AxfKERsZ08g7m9pNUTNxv_Dp4bc"
+          "current_key": "AIzaSyArY2Jw3AM2h7uV93c-IehkGNtHxNmOjq4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "832215378208-6mkbu8mc3t623bjjbq8vu72mepo2n0df.apps.googleusercontent.com",
+              "client_id": "167469597777-cc5lcdk1aa15in6j5snaqg475sd6rf8m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

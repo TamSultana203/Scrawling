@@ -1,30 +1,33 @@
 package com.example.testthis;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+//import com.squareup.picasso.Callback;
+//import com.squareup.picasso.Picasso;
+
+public class ProfileActivity extends AppCompatActivity {
+
+    private TextView profileFullName,userName, profileStatus;
+    private CircleImageView userProfileImage;
+
+    private DatabaseReference profileUserRef;
     private FirebaseAuth firebaseAuth;
+    private String currentUserId;
 
-    private TextView textViewUserEmail;
-    private Button buttonLogout;
-    private DatabaseReference databaseReference;
-
-    private EditText editTextName, editTextAddress;
-    private Button buttonSavepeople;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,50 +35,39 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_profile);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUserId = firebaseAuth.getCurrentUser().getUid();
+        profileUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
 
-        if(firebaseAuth.getCurrentUser()==null){
-            finish();
-            startActivity(new Intent(this, LogInActivity.class));
-        }
-
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextName = (EditText) findViewById(R.id.editTextFullName);
-        buttonSavepeople = (Button) findViewById(R.id.buttonAddPeope);
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        this.setTitle("Profile Page");
 
 
-        textViewUserEmail = (TextView) findViewById(R.id.textureViewUserEmail);
-        textViewUserEmail.setText("Welcome"+user.getEmail());
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        userName = (TextView) findViewById(R.id.userNameId);
+        profileFullName = (TextView) findViewById(R.id.profileFullNameId);
+        profileStatus = (TextView) findViewById(R.id.profileStatusId);
 
-        buttonLogout.setOnClickListener(this);
+        userProfileImage = (CircleImageView) findViewById(R.id.profilePicId);
 
-        buttonSavepeople.setOnClickListener(this);
-
-    }
-
-    private  void SaveUserInformation(){
-        String name = editTextName.getText().toString().trim();
-        String add = editTextAddress.getText().toString().trim();
-        UserInformation userInformation = new UserInformation(name, add);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference.child(user.getUid()).setValue(userInformation);
-        Toast.makeText(this, "Information  saved...",Toast.LENGTH_LONG).show();
-    }
+        profileUserRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    String myProfileFullName = dataSnapshot.child("profileFullName").getValue().toString();
+                    String myuserNamee = dataSnapshot.child("userName").getValue().toString();
+                    String myprofileStatus = dataSnapshot.child("profileStatus").getValue().toString();
+                    String myuserProfileImage = dataSnapshot.child("userProfileImage").getValue().toString();
 
 
-    @Override
-    public void onClick(View view) {
-        if(view==buttonLogout){
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LogInActivity.class));
-        }
+                    //Picasso.with(ProfileActivity.this).load(myuserProfileImage).placeholder(R.drawable.profile).into.(userProfileImage);
 
-        if(view == buttonSavepeople){
-            SaveUserInformation();
-        }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }

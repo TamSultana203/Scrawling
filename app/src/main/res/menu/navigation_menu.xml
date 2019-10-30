@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Account Setting"
+        android:id="@+id/accSetting"
+        android:icon="@drawable/settings"/>
+
+    <item android:title="Notification"
+        android:id="@+id/nottificationSetting"
+        android:icon="@drawable/notification"/>
+
+    <item android:title="Following"
+        android:id="@+id/followingSetting"
+        android:icon="@drawable/friends"/>
+
+    <item android:title="Find Authors"
+        android:id="@+id/findAuthorSetting"
+        android:icon="@drawable/find_people"/>
+
+    <item android:title="Write A new Book"
+        android:id="@+id/writeABookSetting"
+        android:icon="@drawable/write"/>
+
+    <item android:title="Find Books"
+        android:id="@+id/findBookSetting"
+        android:icon="@drawable/search"/>
+
+    <item android:title="Log Out"
+        android:id="@+id/logoutSetting"
+        android:icon="@drawable/logout"/>
+
+</menu>
