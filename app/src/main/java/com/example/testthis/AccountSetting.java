@@ -205,7 +205,7 @@ public class AccountSetting extends AppCompatActivity {
                 public void onComplete(@NonNull Task task) {
 
                     if(task.isSuccessful()){
-                        
+
                         SendUseToMainActvity();
                         Toast.makeText(AccountSetting.this, "Your information has been saved", Toast.LENGTH_LONG).show();;
                         progressDialog.dismiss();
@@ -237,15 +237,10 @@ public class AccountSetting extends AppCompatActivity {
                         String myuserNamee = dataSnapshot.child("userName").getValue().toString();
                         String myprofileStatus = dataSnapshot.child("profileStatus").getValue().toString();
                         String myuserProfileImage = dataSnapshot.child("userProfileImage").getValue().toString();
-
-
                         //Picasso.with(AccountSetting.this).load(myuserProfileImage).placeholder(R.drawable.profile).into.(userProfileImage);
-
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });*/
