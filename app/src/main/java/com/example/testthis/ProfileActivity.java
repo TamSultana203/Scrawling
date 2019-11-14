@@ -16,6 +16,7 @@ package com.example.testthis;
         import android.util.Log;
         import android.view.Gravity;
         import android.view.View;
+        import android.widget.Button;
         import android.widget.CompoundButton;
         import android.widget.DatePicker;
         import android.widget.ImageButton;
@@ -51,7 +52,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
     /** For Toolbar */
-    private ImageButton toolbarLeftButton, toolbarCalButton;
+    private ImageButton toolbarLeftButton;
+    private Button uploadButton;
     TextView toolbarTitle;
 
     /** For Editors */
@@ -273,6 +275,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 mEditor.insertTodo();
             }
         });
+
+        uploadButton.setOnClickListener(this);
     }
 
 
@@ -287,7 +291,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         mEditor = (RichEditor) findViewById(R.id.editor);
 
-        toolbarCalButton = findViewById(R.id.journal_toolbar_calender);
+        uploadButton = findViewById(R.id.uploadButton);
         toolbarLeftButton = findViewById(R.id.journal_toolbar_back_arrow);
         toolbarTitle = findViewById(R.id.journal_toolbar_tv);
 
@@ -297,7 +301,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void setListeners(){
 
         toolbarLeftButton.setOnClickListener(this);
-        toolbarCalButton.setOnClickListener(this);
+        uploadButton.setOnClickListener(this);
 
 
 
@@ -460,6 +464,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(ProfileActivity.this, AccountSetting.class);
+        startActivity(intent);
 
         finish();
     }
@@ -469,35 +475,52 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.finish();
     }
 
+
+    public void writeToFile(String text){
+
+        Toast.makeText(this, "upload button works", Toast.LENGTH_SHORT).show();
+
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("FILE LINK", Context.MODE_PRIVATE);
+            fileOutputStream.write(text.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void readFromFile(){
+        try {
+            FileInputStream fileInputStream = openFileInput("FILE LINK");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+            StringBuffer stringBuffer = new StringBuffer();
+
+            while((line = bufferedReader.readLine()) != null){
+                stringBuffer.append(line+"\n");
+            }
+            mEditor.setHtml(String.valueOf(stringBuffer));
+            //  showToast(stringBuffer.toString());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     public void onClick(View view) {
-//        if(view == toolbarCalButton){
-//
-//            DatePickerFragment fragment = new DatePickerFragment();
-//            fragment.show(getSupportFragmentManager(), "tag1");
-//
-//
-//
-//        } else if(view == toolbarLeftButton){
-//
-//            journal.setFileLink(journal.getTitle());
-//            if(mEditor.getHtml().length() >= 30){
-//                journal.setDescription(mEditor.getHtml().substring(0, 30));
-//            }
-//            else{
-//                journal.setDescription(mEditor.getHtml());
-//            }
-//
-//            writeToFile(mEditor.getHtml());
-//            /**
-//             * Lot to do :(
-//             */
-//            SQLiteDatabaseHelper sqLiteDatabaseHelper = new SQLiteDatabaseHelper(this);
-//            SQLiteDatabase sqLiteDatabase = sqLiteDatabaseHelper.getWritableDatabase();
-//
-//            sqLiteDatabaseHelper.insertJournal(journal);
-//            onBackPressed();
-//        }
+        if(view==uploadButton){
+           // Toast.makeText(this, "upload button works", Toast.LENGTH_SHORT).show();
+
+            writeToFile(mEditor.getHtml());
+        }
     }
 
 
@@ -558,6 +581,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 //        nTitle = "";
 
     }
+
 
 
 

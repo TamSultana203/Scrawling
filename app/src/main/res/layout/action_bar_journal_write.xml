@@ -36,15 +36,15 @@
             android:textColor="@android:color/white"
             android:text="20 November 1:48 am"/>
 
-        <ImageButton
-            android:id="@+id/journal_toolbar_calender"
+        <Button
+            android:id="@+id/uploadButton"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="20dp"
             android:layout_height="27dp"
-            android:src="@drawable/ic_calander"
+            android:layout_weight="3"
             android:background="@color/colorAccent"
-            />
+            android:paddingLeft="27dp"
+            android:gravity="center"
+            android:text="UPLOAD" />
     </LinearLayout>
 
 
