@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="button_name1">CURRENT READ </string>
+    <string name="button_name2">READING LIST</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
